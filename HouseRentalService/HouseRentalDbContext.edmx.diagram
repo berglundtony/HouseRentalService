@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4c2e02f043f94f97aabd09361f49df8b" Name="Diagram1">
+        <EntityTypeShape EntityType="HouseRentalServiceModel.House" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HouseRentalServiceModel.Price" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HouseRentalServiceModel.ResarvationCustomerConnection" Width="2.375" PointX="7.625" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HouseRentalServiceModel.Reservation" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HouseRentalServiceModel.sysdiagram" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="HouseRentalServiceModel.FK_Houses_Prices" ManuallyRouted="false" />
+        <AssociationConnector Association="HouseRentalServiceModel.FK_ResarvationCustomerConnection_Reservation" />
+        <EntityTypeShape EntityType="HouseRentalServiceModel.Customer" Width="1.5" PointX="10.375" PointY="1" />
+        <AssociationConnector Association="HouseRentalServiceModel.FK_ResarvationCustomerConnection_Customers1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

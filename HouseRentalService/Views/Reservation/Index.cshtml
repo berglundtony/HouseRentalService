@@ -1,0 +1,70 @@
+﻿@model List<HouseRentalService.Models.ReservationModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Make resarvation", "CheckPersonalNumber")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Reservation no")
+        </th>
+        <th>
+            @Html.DisplayName("House type")
+        </th>
+        <th>
+            @Html.DisplayName("Customer")
+        </th>
+        <th>
+            @Html.DisplayName("Number of days")
+        </th>
+        <th>
+            @Html.DisplayName("Dayprice")
+        </th>
+        <th>
+            @Html.DisplayName("Total price")
+        </th>
+        <th>
+            @Html.DisplayName("Rent day")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReservationID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HouseType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fullname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfDays)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DayPrice) @Html.DisplayText(" EUR")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPrice) @Html.DisplayText(" EUR")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditReservation", new { id = item.ReservationID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ReservationID }) |
+            @Html.ActionLink("Delete", "DeleteReservation", new { id = item.ReservationID })
+        </td>
+    </tr>
+}
+
+</table>

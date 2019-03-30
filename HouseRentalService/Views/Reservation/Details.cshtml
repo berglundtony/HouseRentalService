@@ -1,0 +1,89 @@
+﻿@model HouseRentalService.Models.ReservationModel
+
+@{
+    ViewBag.Title = "Details reservation";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reservation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ReservationID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReservationID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HouseType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HouseType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfDays)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfDays)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DayPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DayPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonalNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonalNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fullname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fullname)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telephone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditReservation", new { id = Model.ReservationID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

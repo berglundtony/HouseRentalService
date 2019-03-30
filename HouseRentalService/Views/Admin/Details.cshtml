@@ -1,0 +1,42 @@
+﻿@model HouseRentalService.House
+
+@{
+    ViewBag.Title = "Details House";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>House</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MultiplicationValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MultiplicationValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price.BaseDayFee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price.BaseDayFee) @Html.DisplayText("EUR")
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditHouse", new { id = Model.HouseID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

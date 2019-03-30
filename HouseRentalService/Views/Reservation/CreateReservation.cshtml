@@ -1,0 +1,77 @@
+﻿@model HouseRentalService.Models.MakeReservation
+
+@{
+    ViewBag.Title = "Make reservation";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Reservation</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.HouseID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="hidden" id="HouseID" />
+                @Html.DropDownListFor(model => model.HouseID, Model.DropdownHouseType, "-- Choose house type --", htmlAttributes: new { @class = "form-control", @onChange = "SelectedValue(this)" })
+                @Html.ValidationMessageFor(model => model.HouseID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.CustomerID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NumberOfDays, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NumberOfDays, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NumberOfDays, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="input-append date" id="dp3">
+                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control", @placeholder = "Select or write like 2019-01-01", id = "date-daily" } })
+                </div>
+                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script>
+    $(function () {
+        $('#dp3').datepicker({
+            dateFormat: "yy-mm-dd",
+            altFormat: 'yy/mm/dd',
+            minDate: 0,
+            showOtherMonths: true,
+            firstDay: 1,
+            onSelect: function (selectedDate) {
+                $('#date-daily').val(selectedDate);
+            }
+        });
+    });
+
+    //To get selected value an text of dropdownlist
+    function SelectedValue(ddlObject) {
+        var selectedValue = ddlObject.value;
+        $("#HouseID").val(selectedValue)
+    }
+
+</script>

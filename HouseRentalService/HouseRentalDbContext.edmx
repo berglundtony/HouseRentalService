@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HouseRentalServiceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonalNumber" Type="nvarchar" MaxLength="10" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="150" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="150" />
+          <Property Name="MobileNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Houses">
+          <Key>
+            <PropertyRef Name="HouseID" />
+          </Key>
+          <Property Name="HouseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PriceID" Type="int" />
+          <Property Name="Type" Type="nvarchar" MaxLength="250" />
+          <Property Name="MultiplicationValue" Type="float" />
+        </EntityType>
+        <EntityType Name="Prices">
+          <Key>
+            <PropertyRef Name="PriceID" />
+          </Key>
+          <Property Name="PriceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BaseDayFee" Type="float" />
+        </EntityType>
+        <EntityType Name="ResarvationCustomerConnection">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="ResarvationID" Type="int" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="ReservationID" />
+          </Key>
+          <Property Name="ReservationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HouseID" Type="int" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="NumberOfDays" Type="int" />
+          <Property Name="Date" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Houses_Prices">
+          <End Role="Prices" Type="Self.Prices" Multiplicity="0..1" />
+          <End Role="Houses" Type="Self.Houses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prices">
+              <PropertyRef Name="PriceID" />
+            </Principal>
+            <Dependent Role="Houses">
+              <PropertyRef Name="PriceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResarvationCustomerConnection_Customers1">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="ResarvationCustomerConnection" Type="Self.ResarvationCustomerConnection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="ResarvationCustomerConnection">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResarvationCustomerConnection_Reservation">
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="0..1" />
+          <End Role="ResarvationCustomerConnection" Type="Self.ResarvationCustomerConnection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="ReservationID" />
+            </Principal>
+            <Dependent Role="ResarvationCustomerConnection">
+              <PropertyRef Name="ResarvationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HouseRentalServiceModelStoreContainer">
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Houses" EntityType="Self.Houses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prices" EntityType="Self.Prices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResarvationCustomerConnection" EntityType="Self.ResarvationCustomerConnection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Houses_Prices" Association="Self.FK_Houses_Prices">
+            <End Role="Prices" EntitySet="Prices" />
+            <End Role="Houses" EntitySet="Houses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResarvationCustomerConnection_Customers1" Association="Self.FK_ResarvationCustomerConnection_Customers1">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="ResarvationCustomerConnection" EntitySet="ResarvationCustomerConnection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResarvationCustomerConnection_Reservation" Association="Self.FK_ResarvationCustomerConnection_Reservation">
+            <End Role="Reservation" EntitySet="Reservation" />
+            <End Role="ResarvationCustomerConnection" EntitySet="ResarvationCustomerConnection" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HouseRentalServiceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="House">
+          <Key>
+            <PropertyRef Name="HouseID" />
+          </Key>
+          <Property Name="HouseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PriceID" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MultiplicationValue" Type="Double" />
+          <NavigationProperty Name="Price" Relationship="Self.FK_Houses_Prices" FromRole="Houses" ToRole="Prices" />
+        </EntityType>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="PriceID" />
+          </Key>
+          <Property Name="PriceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BaseDayFee" Type="Double" />
+          <NavigationProperty Name="Houses" Relationship="Self.FK_Houses_Prices" FromRole="Prices" ToRole="Houses" />
+        </EntityType>
+        <EntityType Name="ResarvationCustomerConnection">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="ResarvationID" Type="Int32" />
+          <NavigationProperty Name="Reservation" Relationship="HouseRentalServiceModel.FK_ResarvationCustomerConnection_Reservation" FromRole="ResarvationCustomerConnection" ToRole="Reservation" />
+          <NavigationProperty Name="Customer" Relationship="HouseRentalServiceModel.FK_ResarvationCustomerConnection_Customers1" FromRole="ResarvationCustomerConnection" ToRole="Customer" />
+          </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="ReservationID" />
+          </Key>
+          <Property Name="ReservationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HouseID" Type="Int32" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="NumberOfDays" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="ResarvationCustomerConnections" Relationship="HouseRentalServiceModel.FK_ResarvationCustomerConnection_Reservation" FromRole="Reservation" ToRole="ResarvationCustomerConnection" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Houses_Prices">
+          <End Role="Prices" Type="Self.Price" Multiplicity="0..1" />
+          <End Role="Houses" Type="Self.House" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prices">
+              <PropertyRef Name="PriceID" />
+            </Principal>
+            <Dependent Role="Houses">
+              <PropertyRef Name="PriceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HouseRentalServiceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Houses" EntityType="Self.House" />
+          <EntitySet Name="Prices" EntityType="Self.Price" />
+          <EntitySet Name="ResarvationCustomerConnections" EntityType="Self.ResarvationCustomerConnection" />
+          <EntitySet Name="Reservations" EntityType="Self.Reservation" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_Houses_Prices" Association="Self.FK_Houses_Prices">
+            <End Role="Prices" EntitySet="Prices" />
+            <End Role="Houses" EntitySet="Houses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResarvationCustomerConnection_Reservation" Association="HouseRentalServiceModel.FK_ResarvationCustomerConnection_Reservation">
+            <End Role="Reservation" EntitySet="Reservations" />
+            <End Role="ResarvationCustomerConnection" EntitySet="ResarvationCustomerConnections" />
+          </AssociationSet>
+          <EntitySet Name="Customers" EntityType="HouseRentalServiceModel.Customer" />
+          <AssociationSet Name="FK_ResarvationCustomerConnection_Customers1" Association="HouseRentalServiceModel.FK_ResarvationCustomerConnection_Customers1">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="ResarvationCustomerConnection" EntitySet="ResarvationCustomerConnections" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_ResarvationCustomerConnection_Reservation">
+          <End Type="HouseRentalServiceModel.Reservation" Role="Reservation" Multiplicity="0..1" />
+          <End Type="HouseRentalServiceModel.ResarvationCustomerConnection" Role="ResarvationCustomerConnection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="ReservationID" />
+            </Principal>
+            <Dependent Role="ResarvationCustomerConnection">
+              <PropertyRef Name="ResarvationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonalNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ResarvationCustomerConnections" Relationship="HouseRentalServiceModel.FK_ResarvationCustomerConnection_Customers1" FromRole="Customer" ToRole="ResarvationCustomerConnection" />
+        </EntityType>
+        <Association Name="FK_ResarvationCustomerConnection_Customers1">
+          <End Type="HouseRentalServiceModel.Customer" Role="Customer" Multiplicity="0..1" />
+          <End Type="HouseRentalServiceModel.ResarvationCustomerConnection" Role="ResarvationCustomerConnection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="ResarvationCustomerConnection">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HouseRentalServiceModelStoreContainer" CdmEntityContainer="HouseRentalServiceEntities">
+          <EntitySetMapping Name="Houses">
+            <EntityTypeMapping TypeName="HouseRentalServiceModel.House">
+              <MappingFragment StoreEntitySet="Houses">
+                <ScalarProperty Name="HouseID" ColumnName="HouseID" />
+                <ScalarProperty Name="PriceID" ColumnName="PriceID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="MultiplicationValue" ColumnName="MultiplicationValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prices">
+            <EntityTypeMapping TypeName="HouseRentalServiceModel.Price">
+              <MappingFragment StoreEntitySet="Prices">
+                <ScalarProperty Name="PriceID" ColumnName="PriceID" />
+                <ScalarProperty Name="BaseDayFee" ColumnName="BaseDayFee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResarvationCustomerConnections">
+            <EntityTypeMapping TypeName="HouseRentalServiceModel.ResarvationCustomerConnection">
+              <MappingFragment StoreEntitySet="ResarvationCustomerConnection">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="ResarvationID" ColumnName="ResarvationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservations">
+            <EntityTypeMapping TypeName="HouseRentalServiceModel.Reservation">
+              <MappingFragment StoreEntitySet="Reservation">
+                <ScalarProperty Name="ReservationID" ColumnName="ReservationID" />
+                <ScalarProperty Name="HouseID" ColumnName="HouseID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="NumberOfDays" ColumnName="NumberOfDays" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="HouseRentalServiceModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="HouseRentalServiceModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="PersonalNumber" ColumnName="PersonalNumber" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
