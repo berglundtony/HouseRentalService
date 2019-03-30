@@ -1,11 +1,11 @@
-1. a) Använd databasfilen HouseRentalService.bak för att skapa databasen i SQL Server 2014, jag använde expressversionen.
-   b) Högerklicka på Databases och välj Restore Database...  osv...
-2. Ändra på webconfig så att den passar för din maskin.
-3. Här är min webconfig som är anpassad efter SQL Server 2014 Express
+1. a) AnvÃ¤nd databasfilen HouseRentalService.bak fÃ¶r att skapa databasen i SQL Server 2014, jag anvÃ¤nde expressversionen.
+   b) HÃ¶gerklicka pÃ¥ Databases och vÃ¤lj Restore Database...  osv...
+2. Ã„ndra pÃ¥ webconfig sÃ¥ att den passar fÃ¶r din maskin.
+3. HÃ¤r Ã¤r min webconfig som Ã¤r anpassad efter SQL Server 2014 Express
   <connectionStrings>
     <add name="HouseRentalServiceEntities" connectionString="metadata=res://*/HouseRentalDbContext.csdl|res://*/HouseRentalDbContext.ssdl|res://*/HouseRentalDbContext.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DESKTOP-5F3T9T4\SQLEXPRESS;initial catalog=HouseRentalService;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
   </connectionStrings>
-4. Sedan skall det bara vara att köra projektet.
-5. Jag har också gjort en Admin del där man kan lägga till nya typer av hus liksom priser och så.
-6. Användarnamnet är "admin" och lösenordet är "camelonta"
+4. Sedan skall det bara vara att kÃ¶ra projektet.
+5. Jag har ocksÃ¥ gjort en Admin del dÃ¤r man kan lÃ¤gga till nya typer av hus liksom priser och sÃ¥.
+6. AnvÃ¤ndarnamnet Ã¤r "admin" och lÃ¶senordet Ã¤r "password"
 Lycka till med detta!
