@@ -63,7 +63,7 @@ namespace HouseRentalService.Controllers
             if (ModelState.IsValid)
             {
                 var username = "admin";
-                var password = "camelonta";
+                var password = "password";
                 user.UserId = 1;
 
                 if (user.Username.Trim().ToLower() == username && user.Password.Trim().ToLower() == password)
