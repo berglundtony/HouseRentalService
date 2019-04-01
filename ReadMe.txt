@@ -5,7 +5,7 @@
   <connectionStrings>
     <add name="HouseRentalServiceEntities" connectionString="metadata=res://*/HouseRentalDbContext.csdl|res://*/HouseRentalDbContext.ssdl|res://*/HouseRentalDbContext.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=.;initial catalog=HouseRentalService;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
   </connectionStrings>
-3b. Kör du SQL Server Express så är data source=.\SQLEXPRESS; eller databsens namn tex. Dator/SQLEXPRESS (se nedan)
+3b. Kör du SQL Server Express så är data source=.\SQLEXPRESS; eller databsens namn tex. Dator\SQLEXPRESS (se nedan)
   <connectionStrings>
     <add name="HouseRentalServiceEntities" connectionString="metadata=res://*/HouseRentalDbContext.csdl|res://*/HouseRentalDbContext.ssdl|res://*/HouseRentalDbContext.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=.\SQLEXPRESS;initial catalog=HouseRentalService;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
   </connectionStrings>
