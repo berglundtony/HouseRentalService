@@ -18,4 +18,4 @@ Vill du hellre köra ett script för att exekvera databasen gör du så här:
   LOGGA IN
 (NAME = N'RegistrationNumbers_log ', FILENAME = N'C: \ Program \ Microsoft SQL Server \ MSSQL12.MSSQLSERVER \ MSSQL \ DATA \ RegistrationNumbers_log.ldf', SIZE = 2048KB, MAXSIZE = 2048GB, FILEGROWTH = 10%)
 GÅ
-4. Utför sqript
+4. Execute sqript
